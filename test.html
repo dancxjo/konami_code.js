@@ -5,10 +5,22 @@
     <script src="kc.js"></script>
   </head>
   <body>
-    <p>↑↑↓↓←→←→BA</p>
-    <p>A = Ctrl, B = Alt</p>
+    <p>↑↑↓↓←→←→ba</p>
+	<form>
+		<div>
+			<label for="lives">Lives: </label>
+			<input id="lives" type="number" value="1"/>
+		</div>
+		<div>
+			<input type="text" placeholder="make sure I don't intefere"/>
+			<input type="submit"/>
+		</div>
+	</form>
     <script>
-      var kc = new KonamiCodeDetector();
+      var kc = new KonamiCodeDetector(function () { 
+			var el = document.getElementById("lives");
+			el.value = Number(el.value) + 30; 
+		});
     </script>
   </body>
 </html>

@@ -1,13 +1,13 @@
-function KonamiCodeDetector(handler, keys, code) {
-  this.keys = keys;
-  this.code = code;
+function KonamiCodeDetector(handler, code) {
+  this.code = code || [38,38,40,40,37,39,37,39,66,65];
+  if (handler) this.handler = handler;
   this.soFar = 0;
-  this.handler = handler;
-  window.addEventListener('keypress', this.listener, false);
+  window.addEventListener('keyup', (function (detector) {
+	return function (e) { detector.listener(e); }
+  })(this), false);
 }
 
 KonamiCodeDetector.prototype = {
-  code: [38,38,40,40,37,39,37,39,17,18],
   handler: function (event) { 
     console.log('30 lives'); 
   },
@@ -24,9 +24,9 @@ KonamiCodeDetector.prototype = {
     }
   },
   reset: function () {
-    this.soFar = [];
+    this.soFar = 0;
   },
   detach: function () {
-    window.removeEventListener('keypress', this.listener);
+    window.removeEventListener('keyup', this.listener);
   }
 };
