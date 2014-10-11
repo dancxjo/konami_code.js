@@ -25,7 +25,7 @@ KonamiCodeDetector.prototype = {
   },
   reset: function () {
     this.soFar = [];
-  }.
+  },
   detach: function () {
     window.removeEventListener('keypress', this.listener);
   }
